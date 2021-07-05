@@ -1,0 +1,61 @@
+#main {
+  color: red; // 动态选择器1（&后面直接跟后缀，形成组合选择器 父选择器+后缀）
+  &-sidebar {
+    border: 1px solid;
+  }
+  &-sidebar {
+    border: 1px solid;
+  } // 在父选择器的前面添加选择器
+  body & {
+    color: blue
+  }
+}
+
+// 动态选择器2
+$class-pre:'el';
+.#{$class-pre} {
+  &-nav {
+    color: yellow
+  }
+}
+
+// 混入传参
+@mixin border-radius($size) {
+  border-radius: $size;
+  -moz-border-radius: $size;
+  -webkit-border-radius: $size;
+  -ms-border-radius: $size;
+}
+
+.box {
+  @include border-radius(10px)
+}
+
+// 继承1
+.c1 {
+  color: red
+}
+
+.c2 {
+  font-size: 18px;
+  @extend .c1;
+}
+
+// 继承2
+%common-style {
+  color: yellow
+}
+
+.s1 {
+  @extend %common-style;
+    font-size:18px
+}
+
+.s2 {
+  @extend %common-style;
+  font-size:12px;
+}
+.s3{
+    @extend %common-style;
+    font-size:14px
+}
